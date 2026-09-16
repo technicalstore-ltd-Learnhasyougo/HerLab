@@ -13,3 +13,20 @@
 
 /* Filter Buttons */ 
 ADD: justify-content: center; below:  display: flex; here .filters
+
+
+https://github.com/technicalstore-ltd-Learnhasyougo/Learn-today.git
+
+echo "# Learn-today" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main5
+git remote add origin https://github.com/technicalstore-ltd-Learnhasyougo/Learn-today.git
+git push -u origin main
+
+git remote add origin https://github.com/technicalstore-ltd-Learnhasyougo/Learn-today.git
+git branch -M main
+git push -u origin master
+
+ git push https://github.com/technicalstore-ltd-Learnhasyougo/Learn-today.git
