@@ -1,0 +1,15 @@
+<div class="topbar"> to 
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <h1>🤖 AI News — June 2026</h1>
+      <span class="date">Verified compilation · 8 sources · July 2026</span>
+    <a class="navbar-brand">Navbar</a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+/* Filter Buttons */ 
+ADD: justify-content: center; below:  display: flex; here .filters
