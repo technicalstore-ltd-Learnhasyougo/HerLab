@@ -8,27 +8,42 @@
 </head>
 <body>
 
+<!-- Grain overlay (dark-mode only) -->
+<div class="grain-overlay"></div>
+
+<!-- Decorative background orbs -->
+<div class="orbs-circular">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+
+<!-- ── Navbar ── -->
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <h1>🤖 AI News — June 2026</h1>
-      <span class="date">Verified compilation · 8 sources · July 2026</span>
+    <span class="date">Verified compilation · 8 sources · July 2026</span>
     <a class="navbar-brand">Navbar</a>
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <div class="search-row">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </div>
     </form>
   </div>
 </nav>
 
 <div class="container">
 
+<!-- ── Hero ── -->
 <div class="hero">
   <span class="tag">Mid-Year 2026 Review</span>
   <h2>AI Crossed Three Lines Never Crossed Before</h2>
   <p>A government pulled a frontier model. An open-weight Chinese model beat GPT-5.5 at 1/7 the cost. ChatGPT's global share fell below 50%. This is the definitive June 2026 breakdown.</p>
 </div>
 
-<!-- Key Stats -->
+<!-- ── Key Stats ── -->
 <div class="stats-row">
   <div class="stat-card">
     <div class="stat-num">$60B</div>
@@ -48,98 +63,129 @@
   </div>
 </div>
 
-<!-- Filter -->
+<!-- ── Filters + Cards Grid (pagination root) ── -->
+<div id="cardsGrid">
+
 <div class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">All News</button>
-  <button class="filter-btn" data-filter="model">Models</button>
-  <button class="filter-btn" data-filter="policy">Policy &amp; Safety</button>
-  <button class="filter-btn" data-filter="hardware">Hardware</button>
-  <button class="filter-btn" data-filter="business">Business</button>
-  <button class="filter-btn" data-filter="open">Open Source</button>
+  <button class="filter-btn active" data-filter="all">All News <span class="count-badge" id="countAll">35</span></button>
+  <button class="filter-btn" data-filter="model">Models <span class="count-badge" id="countModel">0</span></button>
+  <button class="filter-btn" data-filter="policy">Policy &amp; Safety <span class="count-badge" id="countPolicy">0</span></button>
+  <button class="filter-btn" data-filter="hardware">Hardware <span class="count-badge" id="countHardware">0</span></button>
+  <button class="filter-btn" data-filter="business">Business <span class="count-badge" id="countBusiness">0</span></button>
+  <button class="filter-btn" data-filter="open">Open Source <span class="count-badge" id="countOpen">0</span></button>
 </div>
 
-<!-- Model Landscape -->
-<div class="section-title">
+<!-- ── Model Landscape ── -->
+<div class="section-title" data-section="models">
   <span class="icon">🧠</span> The Model Landscape
   <span class="badge">6 releases that rewrote the leaderboard</span>
 </div>
 
-<div class="cards-grid" id="modelCards">
+<div class="cards-grid">
 
 <div class="card" data-category="model">
   <div class="card-date">Apr 23 / Jun 26</div>
   <h4>GPT-5.5 → GPT-5.6 (Sol, Terra, Luna)</h4>
   <p>GPT-5.5: first fully retrained base since 4.5, omnimodal, 84.9% GDPval, 78.7% OSWorld. GPT-5.6 Sol: 3.7× better coding vs GPT-4o, 1.5M-token context. Government-curated limited preview with national security oversight.</p>
-  <span class="card-tag tag-model">OpenAI</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>OpenAI</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="gpt56">Read more <span class="arrow">→</span></a></div>
 </div>
 
 <div class="card" data-category="model">
   <div class="card-date">May 28</div>
   <h4>Claude Opus 4.8</h4>
   <p>"Modest but tangible improvement." Leads Artificial Analysis Intelligence Index at 61.4. 69.2% SWE-bench Pro, 88.6% Verified. 2.5× speed mode at 1/3 cost. Trained for greater honesty.</p>
-  <span class="card-tag tag-model">Anthropic</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Anthropic</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="opus48">Read more <span class="arrow">→</span></a></div>
 </div>
 
-<div class="card" data-category="model">
+<div class="card" data-category="policy">
   <div class="card-date">Jun 9 / Jun 12</div>
   <h4>Claude Mythos 5 &amp; Fable 5</h4>
   <p>Mythos 5: ~98% on advanced biology benchmarks, elite vulnerability hunting. Fable 5: same core with protective redirect layers for general use. Both <strong>shut down by US Commerce Dept on Jun 12</strong> — first state-pulled frontier model in history.</p>
-  <span class="card-tag tag-safety">Government Suspended</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Government Suspended</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="fable5">Read more <span class="arrow">→</span></a>
+</div>
+
+<div class="card" data-category="policy">
+  <div class="card-date">Jun 9 / Jun 12</div>
+  <h4>Fable 5: The Model That Got Pulled by Government Order</h4>
+  <p>When Amazon's Andy Jassy escalated a "narrow, non-universal jailbreak" finding to Treasury Secretary Bessent on Jun 9, it triggered a chain reaction. By Jun 12, 5:21pm ET, the US Commerce Dept issued an "is-informed" letter under ECRA — and Anthropic disabled Fable 5 for everyone globally. The first state-ordered pullback of a deployed commercial AI model.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Government Suspended</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="fable5">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="open">
   <div class="card-date">Jun 16</div>
   <h4>GLM-5.2 (Zhipu AI / Z.ai)</h4>
   <p>744B MoE (40B active), MIT license, no regional limits. <strong>62.1% SWE-bench Pro — beats GPT-5.5's 58.6%.</strong> $1.40/$4.40 per M tokens vs GPT-5.5's $5/$30. First open model to beat Claude on Design Arena web leaderboard.</p>
-  <span class="card-tag tag-open">Open Weights</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Zhipu AI / Z.ai</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="glm52">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="model">
   <div class="card-date">May 19 / Jun 24</div>
   <h4>Gemini 3.5 Flash + Computer Use</h4>
   <p>55 on AI Analysis Index (+9 pts). #3 of 124 on agentic tool use. 280+ output tokens/sec. Jun 24: built-in computer use — native browsing, app automation, cross-platform reasoning. 3.5 Pro expected imminent.</p>
-  <span class="card-tag tag-model">Google DeepMind</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google DeepMind</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="gemini35">Read more <span class="arrow">→</span></a></div>
 </div>
 
 <div class="card" data-category="model">
   <div class="card-date">Jun 9</div>
   <h4>Command A+ &amp; North Mini Code (Cohere)</h4>
   <p>Command A+: 218B MoE (25B active), vision+language, 48 languages, built for agents. North Mini Code: 30B total, 3B active coding sub-model — first agentic coding LLM from Cohere.</p>
-  <span class="card-tag tag-model">Cohere</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Cohere</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="commanda">Read more <span class="arrow">→</span></a></div>
 </div>
 
-<div class="card" data-category="model">
+<div class="card" data-category="open">
   <div class="card-date">Jun 12</div>
   <h4>Kimi K2.7-Code (Moonshot AI)</h4>
   <p>1T/32B-active MoE coding model. 30% fewer reasoning tokens vs K2.6. 21.8% improvement on Kimi Code Bench v2. 262K context window.</p>
-  <span class="card-tag tag-open">Open-ish</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Moonshot AI</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="kimi">Read more <span class="arrow">→</span></a></div>
 </div>
 
 <div class="card" data-category="open">
   <div class="card-date">Jun 25</div>
   <h4>LFM2.5-230M (Liquid AI)</h4>
   <p>230M-parameter "liquid state" model. Runs on-device (Raspberry Pi, phones). Matches much larger Transformers. Non-transformer architecture — alternative path beyond attention.</p>
-  <span class="card-tag tag-open">On-Device</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Liquid AI</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="lfm">Read more <span class="arrow">→</span></a></div>
 </div>
 
 <div class="card" data-category="open">
   <div class="card-date">Jun 23</div>
   <h4>OCR 4 (Mistral AI)</h4>
   <p>State-of-the-art document OCR. 170 languages. Outputs structured text with bounding boxes, layout tags, confidence scores. 72% win-rate vs leading commercial OCR. Self-hostable and fast.</p>
-  <span class="card-tag tag-open">Open</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Mistral AI</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="ocr4">Read more <span class="arrow">→</span></a></div>
 </div>
 
 <div class="card" data-category="open">
   <div class="card-date">Jun 30</div>
   <h4>Gemma 4 12B + Leanstral 1.5</h4>
   <p>Gemma 4 12B: open-weight multimodal, runs locally on 16GB RAM laptops, vision + native voice. Leanstral 1.5: improved formal-proof model for Lean 4 theorem prover.</p>
-  <span class="card-tag tag-open">Google / Mistral</span>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google / Mistral</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="gemma4">Read more <span class="arrow">→</span></a></div>
 </div>
 
-</div>
+</div><!-- /cards-grid -->
 
-<!-- Timeline -->
-<div class="section-title">
+<!-- ── Timeline ── -->
+<div class="section-title" data-section="timeline">
   <span class="icon">📅</span> June 2026 Timeline
   <span class="badge">Day by day</span>
 </div>
@@ -242,242 +288,278 @@
   <div class="tl-desc">Improved formal-proofs model for Lean 4.</div>
 </div>
 
+</div><!-- /timeline -->
+
+<!-- ── Featured Hero Card ── -->
+<div class="featured-card" data-section="featured">
+  <div class="gradient-border"></div>
+  <div class="featured-inner">
+    <div class="fc-label">
+      <span>🚨</span> Breaking Governance Event
+    </div>
+    <h3>Fable 5 &amp; Mythos 5: The First Frontier Model Pulled by Government Order</h3>
+    <div class="fc-sub">
+      On June 12, 2026, the US Commerce Department issued an export-control directive that disabled Claude Fable 5 and Mythos 5 globally — the first time a deployed commercial AI model has been pulled by state order. What happened, why it matters, and what it means for anyone building on frontier APIs.
+    </div>
+    <div class="fc-meta">
+      <span class="fc-date"><span>📅</span> Jun 9 – Jun 12</span>
+      <span class="fc-source"><span>🔗</span> 3 analysis pieces</span>
+      <span><span>📊</span> Deep Read</span>
+    </div>
+    <div class="featured-summary">
+      In under 72 hours, a frontier AI model went from launch to global shutdown. The Commerce Department's export-control directive didn't just disable two models — it set a precedent that affects every company building on frontier APIs. Here's the full timeline, the security finding that triggered it, and what it means for multi-model strategy.
+    </div>
+    <div class="featured-metrics">
+      <span class="metric-tag high"><span class="metric-num">72h</span> Lifespan</span>
+      <span class="metric-tag high"><span class="metric-num">150+</span> Orgs affected</span>
+      <span class="metric-tag medium"><span class="metric-num">15+</span> Countries</span>
+      <span class="metric-tag high"><span class="metric-num">1</span> Precedent</span>
+    </div>
+    <div class="fc-bottom">
+      <span class="featured-tag">Governance Milestone</span>
+      <a class="more-link" href="javascript:void(0)" data-modal="fable5">Deep dive <span class="arrow">→</span></a>
+      <button class="btn-read-original" data-modal="fable5">Read Original</button>
+      <button class="btn-read-original" data-modal="fable5_alt" style="margin-left:6px;">Full Report</button>
+    </div>
+    <div class="featured-body" id="featuredBody"></div>
+  </div>
 </div>
 
-<!-- Fable 5 Deep Dive -->
-<div class="section-title">
-  <span class="icon">⚠️</span> Deep Dive: The Fable 5 Shutdown
-  <span class="badge">Most consequential governance event of 2026</span>
-</div>
-
-<div class="analysis-box">
-  <h4>What Happened</h4>
-  <ul>
-    <li><strong>June 9:</strong> Anthropic launches Claude Fable 5 (safe general-use) and Mythos 5 (cyber/bio, restricted to Project Glasswing — ~150 organizations in 15+ countries).</li>
-    <li><strong>June 11:</strong> Amazon's Andy Jassy escalates a security finding to Treasury Secretary Scott Bessent. A "narrow, non-universal jailbreak" prompt revealed previously known minor vulnerabilities in Fable 5's codebase-fixing ability.</li>
-    <li><strong>June 12, 5:21pm ET:</strong> US Commerce Department issues an "is-informed" letter under the Export Control Reform Act. Orders Anthropic to bar all foreign nationals from both models. Anthropic complies by disabling them for <em>everyone</em> globally.</li>
-    <li><strong>July 1:</strong> Access restored to US customers after review.</li>
-  </ul>
-</div>
-
-<div class="analysis-box">
-  <h4>Why It Matters</h4>
-  <ul>
-    <li><strong>First precedent:</strong> A deployed commercial AI model has been pulled by government order. This establishes that frontier models can be treated like export-controlled technology — not software.</li>
-    <li><strong>For businesses:</strong> If you build on a frontier API, your infrastructure can be disabled overnight by a regulatory action outside your control. Multi-model redundancy is no longer optional.</li>
-    <li><strong>Geopolitical signal:</strong> The US is willing to use export-control mechanisms (typically reserved for chips and hardware) against model weights and API access.</li>
-  </ul>
-</div>
-
-<!-- GLM-5.2 -->
-<div class="section-title">
-  <span class="icon">🌏</span> Deep Dive: GLM-5.2 and the Open-Weight Inflection Point
-  <span class="badge">MIT licensed · beats GPT-5.5</span>
-</div>
-
-<div class="analysis-box">
-  <h4>The Numbers</h4>
-  <ul>
-    <li><strong>SWE-bench Pro:</strong> GLM-5.2 62.1% vs GPT-5.5 58.6% vs Claude Opus 4.8 69.2%</li>
-    <li><strong>FrontierSWE:</strong> GLM-5.2 74.4% vs Claude Opus 4.8 75.1% — nearly matches the leader</li>
-    <li><strong>Cost:</strong> $1.40/$4.40 per M tokens vs GPT-5.5 $5/$30 — roughly <strong>1/7 the output cost</strong></li>
-    <li><strong>License:</strong> MIT — no regional limits, no usage restrictions</li>
-    <li><strong>Size:</strong> 744B parameters, 40B active MoE, 1M-token context</li>
-  </ul>
-</div>
-
-<div class="analysis-box">
-  <h4>Why It Matters</h4>
-  <ul>
-    <li>GLM-5.2 became the #1 open-weights model on the Artificial Analysis Intelligence Index.</li>
-    <li>First model to beat the Claude line on Design Arena's web-design leaderboard.</li>
-    <li>ChatGPT's global market share fell below 50% for the first time — the moat proprietary labs built in 2024–2025 is collapsing.</li>
-    <li>The question for businesses is no longer "which model is best?" but "which combination of models, agents, and governance lets us deploy safely, cheaply, and at scale?"</li>
-  </ul>
-</div>
-
-<!-- Hardware -->
-<div class="section-title">
+<!-- ── Hardware ── -->
+<div class="section-title" data-section="hardware">
   <span class="icon">⚙️</span> Hardware &amp; Infrastructure
   <span class="badge">AI chips proliferate</span>
 </div>
 
 <div class="cards-grid">
-  <div class="card" data-category="hardware">
-    <div class="card-date">Jun 1</div>
-    <h4>Nvidia RTX Spark</h4>
-    <p>AI PC chip debuted at Computex. Blackwell GPU + Grace CPU. 1 petaflop AI inference, 128GB RAM. Brings datacenter-class AI to laptops and desktops.</p>
-    <span class="card-tag tag-hardware">Nvidia</span>
-  </div>
-  <div class="card" data-category="hardware">
-    <div class="card-date">Jun 24</div>
-    <h4>OpenAI "Jalapeño"</h4>
-    <p>Custom LLM inference chip built with Broadcom. Tests show far better performance-per-watt than top GPUs. OpenAI's first silicon — signals vertical integration into hardware.</p>
-    <span class="card-tag tag-hardware">OpenAI + Broadcom</span>
-  </div>
-  <div class="card" data-category="hardware">
-    <div class="card-date">Jun 25</div>
-    <h4>Liquid AI LFM2.5-230M</h4>
-    <p>Non-transformer "liquid state" architecture. 230M params, runs on Raspberry Pi and phones. Matches much larger Transformers. Proves alternative architectures can compete.</p>
-    <span class="card-tag tag-hardware">Liquid AI</span>
-  </div>
-  <div class="card" data-category="hardware">
-    <div class="card-date">Ongoing</div>
-    <h4>IBM Analog &amp; Neuromorphic</h4>
-    <p>IBM continued work on analog chips, neuromorphic computing, and optical computing for AI — alternative hardware paths as inference costs hit physical limits.</p>
-    <span class="card-tag tag-hardware">IBM</span>
-  </div>
+<div class="card" data-category="hardware">
+  <div class="card-date">Jun 1</div>
+  <h4>Nvidia RTX Spark</h4>
+  <p>AI PC chip debuted at Computex. Blackwell GPU + Grace CPU. 1 petaflop AI inference, 128GB RAM. Brings datacenter-class AI to laptops and desktops.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Nvidia</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
 </div>
+<div class="card" data-category="hardware">
+  <div class="card-date">Jun 24</div>
+  <h4>OpenAI "Jalapeño"</h4>
+  <p>Custom LLM inference chip built with Broadcom. Tests show far better performance-per-watt than top GPUs. OpenAI's first silicon — signals vertical integration into hardware.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>OpenAI + Broadcom</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="jalapeno">Read more <span class="arrow">→</span></a></div>
+</div>
+<div class="card" data-category="hardware">
+  <div class="card-date">Jun 25</div>
+  <h4>Liquid AI LFM2.5-230M</h4>
+  <p>Non-transformer "liquid state" architecture. 230M params, runs on Raspberry Pi and phones. Matches much larger Transformers. Proves alternative architectures can compete.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Liquid AI</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="lfm">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="hardware">
+  <div class="card-date">Ongoing</div>
+  <h4>IBM Analog &amp; Neuromorphic</h4>
+  <p>IBM continued work on analog chips, neuromorphic computing, and optical computing for AI — alternative hardware paths as inference costs hit physical limits.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>IBM</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="fable5_alt">Read more <span class="arrow">→</span></a>
+</div>
+</div><!-- /cards-grid -->
 
-<!-- Policy -->
-<div class="section-title">
+<!-- ── Policy ── -->
+<div class="section-title" data-section="policy">
   <span class="icon">🏛️</span> Policy &amp; Regulation
   <span class="badge">Governments enter the model layer</span>
 </div>
 
 <div class="cards-grid">
-  <div class="card" data-category="policy">
-    <div class="card-date">Jun 2</div>
-    <h4>US Executive Order 14409</h4>
-    <p>"Promoting Advanced Artificial Intelligence Innovation and Security." 30-day deadlines for CNS, Dept of War, and DHS/CISA to prioritize cyber defense of national security systems. Voluntary frontier model framework. "America First cybersecurity."</p>
-    <span class="card-tag tag-policy">White House</span>
-  </div>
-  <div class="card" data-category="policy">
-    <div class="card-date">Jun 12</div>
-    <h4>Fable 5 / Mythos 5 Export Control</h4>
-    <p>Commerce Dept directive under Export Control Reform Act. First use of export-control mechanisms against AI model access. Precedent: frontier models = controlled technology.</p>
-    <span class="card-tag tag-policy">US Commerce</span>
-  </div>
-  <div class="card" data-category="policy">
-    <div class="card-date">Jul 15 (upcoming)</div>
-    <h4>China Anthropomorphic AI Rules</h4>
-    <p>China finalized new rules on "anthropomorphic" AI services. Take effect July 15, 2026. Targets AI services that simulate human personality, emotion, or appearance.</p>
-    <span class="card-tag tag-policy">China</span>
-  </div>
-  <div class="card" data-category="policy">
-    <div class="card-date">Jun 19</div>
-    <h4>US AI Controls Extended Beyond Chips</h4>
-    <p>New restrictions on access to advanced models — not just chips and infrastructure. Creates tensions between AI developers and regulators over how model risks should be evaluated and managed.</p>
-    <span class="card-tag tag-policy">US Policy</span>
-  </div>
-  <div class="card" data-category="policy">
-    <div class="card-date">Jun 15</div>
-    <h4>Meta AI Media Labeling</h4>
-    <p>Meta announced new data-privacy changes including labeling AI-generated media. Posts generated by AI tools will be marked "Made with AI" following transparency policy.</p>
-    <span class="card-tag tag-policy">Meta</span>
-  </div>
-  <div class="card" data-category="policy">
-    <div class="card-date">Jul 6</div>
-    <h4>UN Chief Calls for AI Governance</h4>
-    <p>António Guterres appealed for urgent governance action. UN Independent International Scientific Panel on Artificial Intelligence referenced. "From AI to killer robots" — governance framework needed.</p>
-    <span class="card-tag tag-policy">United Nations</span>
-  </div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jun 2</div>
+  <h4>US Executive Order 14409</h4>
+  <p>"Promoting Advanced Artificial Intelligence Innovation and Security." 30-day deadlines for CNS, Dept of War, and DHS/CISA to prioritize cyber defense of national security systems. Voluntary frontier model framework. "America First cybersecurity."</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>White House</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
 </div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jun 12</div>
+  <h4>Fable 5 / Mythos 5 Export Control</h4>
+  <p>Commerce Dept directive under Export Control Reform Act. First use of export-control mechanisms against AI model access. Precedent: frontier models = controlled technology.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>US Commerce</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jul 15 (upcoming)</div>
+  <h4>China Anthropomorphic AI Rules</h4>
+  <p>China finalized new rules on "anthropomorphic" AI services. Take effect July 15, 2026. Targets AI services that simulate human personality, emotion, or appearance.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>China</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jun 19</div>
+  <h4>US AI Controls Extended Beyond Chips</h4>
+  <p>New restrictions on access to advanced models — not just chips and infrastructure. Creates tensions between AI developers and regulators over how model risks should be evaluated and managed.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>US Policy</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jun 15</div>
+  <h4>Meta AI Media Labeling</h4>
+  <p>Meta announced new data-privacy changes including labeling AI-generated media. Posts generated by AI tools will be marked "Made with AI" following transparency policy.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Meta</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="policy">
+  <div class="card-date">Jul 6</div>
+  <h4>UN Chief Calls for AI Governance</h4>
+  <p>António Guterres appealed for urgent governance action. UN Independent International Scientific Panel on Artificial Intelligence referenced. "From AI to killer robots" — governance framework needed.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>United Nations</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+</div><!-- /cards-grid -->
 
-<!-- Business -->
-<div class="section-title">
+<!-- ── Business ── -->
+<div class="section-title" data-section="business">
   <span class="icon">💼</span> Business &amp; Funding
   <span class="badge">Mega-deals and consolidation</span>
 </div>
 
 <div class="cards-grid">
-  <div class="card" data-category="business">
-    <div class="card-date">Jun 16</div>
-    <h4>SpaceX Acquires Cursor for $60B</h4>
-    <p>SpaceX (X67 Inc.) announces acquisition of Anysphere (Cursor) in stock. Aims to integrate AI coding assistant. Largest AI startup acquisition to date.</p>
-    <span class="card-tag tag-business">$60B Deal</span>
-  </div>
-  <div class="card" data-category="business">
-    <div class="card-date">Jun 12</div>
-    <h4>OpenAI Acquires Ona</h4>
-    <p>Cloud execution platform Ona acquired to bolster Codex code agents. Signals OpenAI's push into full orchestration layer.</p>
-    <span class="card-tag tag-business">OpenAI</span>
-  </div>
-  <div class="card" data-category="business">
-    <div class="card-date">Jun 14</div>
-    <h4>Novara Acquires Ensogo</h4>
-    <p>AI-driven ESG/sustainability platform Ensogo acquired by Novara to add AI risk modeling to their offerings.</p>
-    <span class="card-tag tag-business">ESG Tech</span>
-  </div>
-  <div class="card" data-category="business">
-    <div class="card-date">June</div>
-    <h4>$180M to LeapXpert</h4>
-    <p>Enterprise messaging platform LeapXpert raised $180M. Part of broader trend: investors funding infrastructure, data, and enterprise tools rather than just models.</p>
-    <span class="card-tag tag-business">Funding</span>
-  </div>
-  <div class="card" data-category="business">
-    <div class="card-date">Jun 2</div>
-    <h4>Microsoft Work IQ GA</h4>
-    <p>Context layer across M365 indexes emails, docs, calendars, communication patterns. Exposed via APIs for Copilot and Azure OpenAI agents. Dozens of 365 Copilot improvements.</p>
-    <span class="card-tag tag-business">Microsoft</span>
-  </div>
-  <div class="card" data-category="business">
-    <div class="card-date">Jun 17</div>
-    <h4>AWS Summit NYC</h4>
-    <p>Bedrock AgentCore enhancements: knowledge-base RAG, integrated web search, WAF bot controls. New tools: Continuum security, Kiro iOS DevOps.</p>
-    <span class="card-tag tag-business">AWS</span>
-  </div>
+<div class="card" data-category="business">
+  <div class="card-date">Jun 16</div>
+  <h4>SpaceX Acquires Cursor for $60B</h4>
+  <p>SpaceX (X67 Inc.) announces acquisition of Anysphere (Cursor) in stock. Aims to integrate AI coding assistant. Largest AI startup acquisition to date.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>$60B Deal</span></div>
+  <span class="relevance high">High</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="cursor">Read more <span class="arrow">→</span></a></div>
 </div>
+<div class="card" data-category="business">
+  <div class="card-date">Jun 12</div>
+  <h4>OpenAI Acquires Ona</h4>
+  <p>Cloud execution platform Ona acquired to bolster Codex code agents. Signals OpenAI's push into full orchestration layer.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>OpenAI</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="business">
+  <div class="card-date">Jun 14</div>
+  <h4>Novara Acquires Ensogo</h4>
+  <p>AI-driven ESG/sustainability platform Ensogo acquired by Novara to add AI risk modeling to their offerings.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>ESG Tech</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="business">
+  <div class="card-date">June</div>
+  <h4>$180M to LeapXpert</h4>
+  <p>Enterprise messaging platform LeapXpert raised $180M. Part of broader trend: investors funding infrastructure, data, and enterprise tools rather than just models.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Funding</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="business">
+  <div class="card-date">Jun 2</div>
+  <h4>Microsoft Work IQ GA</h4>
+  <p>Context layer across M365 indexes emails, docs, calendars, communication patterns. Exposed via APIs for Copilot and Azure OpenAI agents. Dozens of 365 Copilot improvements.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Microsoft</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="business">
+  <div class="card-date">Jun 17</div>
+  <h4>AWS Summit NYC</h4>
+  <p>Bedrock AgentCore enhancements: knowledge-base RAG, integrated web search, WAF bot controls. New tools: Continuum security, Kiro iOS DevOps.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>AWS</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+</div><!-- /cards-grid -->
 
-<!-- Products -->
-<div class="section-title">
+<!-- ── Products & Consumer AI ── -->
+<div class="section-title" data-section="products">
   <span class="icon">📱</span> Products &amp; Consumer AI
   <span class="badge">AI woven into everyday software</span>
 </div>
 
 <div class="cards-grid">
-  <div class="card" data-category="model">
-    <div class="card-date">Jun 8</div>
-    <h4>Google Home Speaker with Gemini</h4>
-    <p>New smart speaker built with Gemini. Natural conversation, handles multiple requests, remembers context. 100 new Gemini for Home voice features.</p>
-    <span class="card-tag tag-model">Google</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun 11</div>
-    <h4>Android 17 + Pixel Drop</h4>
-    <p>On-device generative features: photo editing, AI wallpaper, better Google Assistant. Floating app windows, Screen Reactions, foldable gaming optimization. Biometric phone lock.</p>
-    <span class="card-tag tag-model">Google</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun 9</div>
-    <h4>Gemini 3.5 Live Translate</h4>
-    <p>Real-time speech-to-speech translation in 70+ languages. Preserves natural intonation, eliminates awkward pauses. Few-second lag. Rolling out in Gemini Live API, AI Studio, Google Translate app.</p>
-    <span class="card-tag tag-model">Google DeepMind</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun 16</div>
-    <h4>Grok for PowerPoint</h4>
-    <p>Free add-in turns outlines into slides, writes narratives with current data and images. Grok integrated into Microsoft Office.</p>
-    <span class="card-tag tag-model">xAI</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun 16</div>
-    <h4>Grok Imagine Video 1.5</h4>
-    <p>Higher quality, faster video generation. Better audio and motion at roughly half the latency of v1.0. Available on API and apps.</p>
-    <span class="card-tag tag-model">xAI</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun</div>
-    <h4>Google Finance Out of Beta</h4>
-    <p>New Google Finance app for Android. AI research tool, AI-powered "key moments" explaining stock moves. Portfolio monitoring, market intelligence.</p>
-    <span class="card-tag tag-model">Google</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun</div>
-    <h4>NotebookLM Improvements</h4>
-    <p>AI research notes tool now supports complex reasoning, math, and executing code snippets.</p>
-    <span class="card-tag tag-model">Google</span>
-  </div>
-  <div class="card" data-category="model">
-    <div class="card-date">Jun</div>
-    <h4>Nano Banana 2 Lite + Gemini Omni Flash</h4>
-    <p>Nano Banana 2 Lite: fastest, most cost-efficient Gemini image model. Gemini Omni Flash: natively multimodal video model via API. 720p clips (6s) in ~25 seconds with continuous audio.</p>
-    <span class="card-tag tag-model">Google DeepMind</span>
-  </div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun 8</div>
+  <h4>Google Home Speaker with Gemini</h4>
+  <p>New smart speaker built with Gemini. Natural conversation, handles multiple requests, remembers context. 100 new Gemini for Home voice features.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
 </div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun 11</div>
+  <h4>Android 17 + Pixel Drop</h4>
+  <p>On-device generative features: photo editing, AI wallpaper, better Google Assistant. Floating app windows, Screen Reactions, foldable gaming optimization. Biometric phone lock.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun 9</div>
+  <h4>Gemini 3.5 Live Translate</h4>
+  <p>Real-time speech-to-speech translation in 70+ languages. Preserves natural intonation, eliminates awkward pauses. Few-second lag. Rolling out in Gemini Live API, AI Studio, Google Translate app.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google DeepMind</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun 16</div>
+  <h4>Grok for PowerPoint</h4>
+  <p>Free add-in turns outlines into slides, writes narratives with current data and images. Grok integrated into Microsoft Office.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>xAI</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun 16</div>
+  <h4>Grok Imagine Video 1.5</h4>
+  <p>Higher quality, faster video generation. Better audio and motion at roughly half the latency of v1.0. Available on API and apps.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>xAI</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="grokvideo">Read more <span class="arrow">→</span></a></div>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun</div>
+  <h4>Google Finance Out of Beta</h4>
+  <p>New Google Finance app for Android. AI research tool, AI-powered "key moments" explaining stock moves. Portfolio monitoring, market intelligence.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun</div>
+  <h4>NotebookLM Improvements</h4>
+  <p>AI research notes tool now supports complex reasoning, math, and executing code snippets.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+<div class="card" data-category="model">
+  <div class="card-date">Jun</div>
+  <h4>Nano Banana 2 Lite + Gemini Omni Flash</h4>
+  <p>Nano Banana 2 Lite: fastest, most cost-efficient Gemini image model. Gemini Omni Flash: natively multimodal video model via API. 720p clips (6s) in ~25 seconds with continuous audio.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google DeepMind</span></div>
+  <span class="relevance low">Low</span>
+  <a class="more-link" href="javascript:void(0)">Read more <span class="arrow">→</span></a>
+</div>
+</div><!-- /cards-grid -->
 
-<!-- Analysis -->
-<div class="section-title">
+<!-- Pagination (inside /#cardsGrid so it's included in filter scope) -->
+<div class="pagination" id="pagination"></div>
+
+</div><!-- /#cardsGrid -->
+
+<!-- ── Analysis: What June 2026 Means ── -->
+<div class="section-title" data-section="analysis">
   <span class="icon">🔍</span> Analysis: What June 2026 Means
   <span class="badge">7 key takeaways</span>
 </div>
@@ -517,8 +599,8 @@
   <p>Audit trails, role permissions, human review, and policy layers are becoming sellable features. Enterprise AI governance is getting formalized — big vendors are turning safety, permissions, and audit processes into product features. This affects procurement and B2B sales.</p>
 </div>
 
-<!-- Stanford AI Index -->
-<div class="section-title">
+<!-- ── Stanford AI Index Context ── -->
+<div class="section-title" data-section="stanford">
   <span class="icon">📊</span> Context: Stanford 2026 AI Index
   <span class="badge">Broader adoption data</span>
 </div>
@@ -533,8 +615,8 @@
   </ul>
 </div>
 
-<!-- Cambridge Vaccine -->
-<div class="section-title">
+<!-- ── Notable Research ── -->
+<div class="section-title" data-section="research">
   <span class="icon">🧬</span> Notable Research: AI-Designed Vaccine
   <span class="badge">June 14</span>
 </div>
@@ -543,26 +625,45 @@
   <p>Researchers at the University of Cambridge announced that an artificial intelligence-designed vaccine successfully completed initial human trials — marking the first time a vaccine's key component was designed by AI. This represents a concrete human-value milestone beyond the model-benchmark arms race.</p>
 </div>
 
-<!-- Sources -->
+<!-- ── More to Read (rendered by JS) ── -->
+<div class="more-to-read">
+  <div class="mtr-title">
+    <span class="mtr-icon">📖</span> More to Read
+  </div>
+  <div class="mtr-grid"></div>
+</div>
+
+<!-- ── Sources ── -->
 <div class="sources">
   <h4>Sources Verified</h4>
   <ul class="source-list">
-    <li><a href="https://www.aicritique.org/us/2026/07/02/ai-developments-in-june-2026-major-releases-products-research-and-policy/">AI Critique — "AI Developments in June 2026"</a> (Jul 2, 2026)</li>
-    <li><a href="https://kersai.com/ai-breakthroughs-june-2026-mid-year-update/">KERSAI — "AI Breakthroughs in June 2026: Mid-Year Update"</a> (Jun 26, 2026)</li>
-    <li><a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/">Google Blog — "The latest AI news we announced in June 2026"</a> (Jul 1, 2026)</li>
-    <li><a href="https://blog.mean.ceo/latest-ai-developments-news-june-2026/">Mean CEO — "Latest AI developments News | June 2026 (STARTUP EDITION)"</a> (Jun 4, 2026)</li>
-    <li><a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/">White House — Executive Order 14409</a> (Jun 2, 2026)</li>
-    <li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report">Stanford HAI — 2026 AI Index Report</a></li>
-    <li><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates">Crescendo AI — Latest AI News</a> (Jun 14, 2026)</li>
-    <li><a href="https://news.un.org/en/story/2026/07/1167873">UN News — "From AI to killer robots: UN chief issues urgent governance call"</a> (Jul 6, 2026)</li>
+    <li><a href="https://www.aicritique.org/us/2026/07/02/ai-developments-in-june-2026-major-releases-products-research-and-policy/">AI Critique — "AI Developments in June 2026"</a> <span class="src-meta">(Jul 2, 2026)</span></li>
+    <li><a href="https://kersai.com/ai-breakthroughs-june-2026-mid-year-update/">KERSAI — "AI Breakthroughs in June 2026: Mid-Year Update"</a> <span class="src-meta">(Jun 26, 2026)</span></li>
+    <li><a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/">Google Blog — "The latest AI news we announced in June 2026"</a> <span class="src-meta">(Jul 1, 2026)</span></li>
+    <li><a href="https://blog.mean.ceo/latest-ai-developments-news-june-2026/">Mean CEO — "Latest AI developments News | June 2026 (STARTUP EDITION)"</a> <span class="src-meta">(Jun 4, 2026)</span></li>
+    <li><a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/">White House — Executive Order 14409</a> <span class="src-meta">(Jun 2, 2026)</span></li>
+    <li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report">Stanford HAI — 2026 AI Index Report</a> <span class="src-meta"></span></li>
+    <li><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates">Crescendo AI — Latest AI News</a> <span class="src-meta">(Jun 14, 2026)</span></li>
+    <li><a href="https://news.un.org/en/story/2026/07/1167873">UN News — "From AI to killer robots: UN chief issues urgent governance call"</a> <span class="src-meta">(Jul 6, 2026)</span></li>
   </ul>
 </div>
 
+<!-- ── Footer ── -->
 <div class="footer">
   Compiled and verified · June 2026 AI News · Generated July 2026<br>
   Sources: 8 verified · Models covered: 15+ · Geographic scope: US, China, EU, UN
 </div>
 
+</div><!-- /.container -->
+
+<!-- ── Modal ── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal-summary" id="modalSummary"></div>
+    <div class="modal-metrics" id="modalMetrics"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 </div>
 
 <script src="script.js"></script>
