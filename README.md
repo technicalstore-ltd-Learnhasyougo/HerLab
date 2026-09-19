@@ -1,1 +1,1 @@
-# Learn-today How to us AI
+# Learn-today How to use, Us AI
