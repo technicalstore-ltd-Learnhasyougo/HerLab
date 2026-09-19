@@ -1,0 +1,36 @@
+HERLAB — GIT PUSH COMPLETE
+===========================
+Date: 2026-09-18
+Remote: git@github.com:technicalstore-ltd-Learnhasyougo/HerLab.git
+Branch: master
+
+17 files pushed across 4 commits:
+  ba38e9c  Add Dev folders, Dockerfile, CI workflow
+  d1ea6ad  Complete June 2026 AI News page: 14 modals, 22 more-to-read, filters, count badges, featured card
+  7df70fb  yes
+  521b8fb  Initial commit
+
+KEY FILES ON REMOTE:
+  AI_News_June_2026.html  — 37,757 chars, 19 data-modal hooks, count badges, GLM-5.2, Fable 5 separate card, featured card (Read Original + Full Report buttons), orb-4, dark mode
+  script.js              — 14 modal entries (fable5, fable5_alt, gpt56, opus48, glm52, gemini35, commanda, kimi, lfm, ocr4, gemma4, cursor, grokvideo, jalapeno), 22 more-to-read items
+  styles.css             — dark theme, badge styles, hidden-section class, 4 orbs with animations
+  redo.txt               — original task list
+  Dockerfile             — original/untouched (as requested)
+  Dev/V-1/               — 3 files (older versions)
+  Dev/V-2/               — 4 files (newer versions)
+  .github/workflows/ci.yml
+
+FEATURES VERIFIED IN BROWSER:
+  ✅ 22 more-to-read items
+  ✅ 14/14 modals open (gpt56, opus48, glm52, gemini35, commanda, kimi, lfm, ocr4, gemma4, fable5, fable5_alt, jalapeno, cursor, grokvideo)
+  ✅ 6 filter buttons with count badges (All=35, Model=12, Policy=8, Hardware=4, Business=6, Open=5)
+  ✅ Featured card with both Read Original + Full Report buttons
+  ✅ Pagination (6 per page, 35 articles = 6 pages)
+  ✅ Escape closes modals, modal content clears on close
+  ✅ 4 animated background orbs
+
+GITHUB URL:
+  https://github.com/technicalstore-ltd-Learnhasyougo/HerLab
+
+LOCAL PATH:
+  C:\Users\techs\Desktop\Work\Projects\HerLab\
