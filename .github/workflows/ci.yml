@@ -15,7 +15,7 @@ jobs:
       - name: Validate HTML
         run: |
           npm install -g html-validate
-          html-validate "*.html" || true
+          html-validate "*.html"
 
   docker-build:
     runs-on: ubuntu-latest
@@ -41,9 +41,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Run container
+      - name: Run container and validate
         run: |
+          # docker-build already built ai-news:latest; rebuild here for the test job
+          # since images are lost between jobs in GitHub Actions.
           docker build -t ai-news:test .
           docker run --rm -p 8080:8080 ai-news:test &
           sleep 2
           curl -f http://localhost:8080/AI_News_June_2026.html || exit 1
+          # Functional checks — modals, filters, pagination, featured card
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'data-modal="fable5"' || exit 1
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'data-modal="gpt56"' || exit 1
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'id="pagination"' || exit 1
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'class="filter-card"' || exit 1
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'class="featured-card"' || exit 1
+          curl -s http://localhost:8080/AI_News_June_2026.html | grep -q 'id="modalOverlay"' || exit 1
+          echo "All functional checks passed"
