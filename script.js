@@ -173,9 +173,6 @@
     cards.forEach(function (card) {
       if (!card.classList.contains('hidden')) count++;
     });
-    timelineSets.forEach(function (ts) {
-      if (!ts.classList.contains('hidden')) count++;
-    });
     return count;
   }
 
