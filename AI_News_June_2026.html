@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI News — June 2026: Full Verification Report</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta property="og:title" content="AI News — June 2026: Full Verification Report">
+<meta property="og:description" content="Mid-Year 2026 Review: AI Crossed Three Lines Never Crossed Before. 35 cards, 14 model deep-dives, 16 timeline entries, 22 more-to-read links.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://technicalstore-ltd-Learnhasyougo.github.io/HerLab/AI_News_June_2026.html">
 </head>
 <body>
 
@@ -63,16 +68,43 @@
   </div>
 </div>
 
-<!-- ── Filters + Cards Grid (pagination root) ── -->
-<div id="cardsGrid">
+<!-- ── Filters (card-styled, matching .cards-grid) ── -->
+<div class="section-title" data-section="filters">
+  <span class="icon">🔍</span> Filter by Category
+  <span class="badge">6 topics</span>
+</div>
 
-<div class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">All News <span class="count-badge" id="countAll">35</span></button>
-  <button class="filter-btn" data-filter="model">Models <span class="count-badge" id="countModel">0</span></button>
-  <button class="filter-btn" data-filter="policy">Policy &amp; Safety <span class="count-badge" id="countPolicy">0</span></button>
-  <button class="filter-btn" data-filter="hardware">Hardware <span class="count-badge" id="countHardware">0</span></button>
-  <button class="filter-btn" data-filter="business">Business <span class="count-badge" id="countBusiness">0</span></button>
-  <button class="filter-btn" data-filter="open">Open Source <span class="count-badge" id="countOpen">0</span></button>
+<div class="cards-grid" id="cardsGrid">
+  <div class="card filter-card active" data-filter="all">
+    <div class="card-date"><span class="count-badge" id="countAll">35</span></div>
+    <h4>All News</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Show everything</span></div>
+  </div>
+  <div class="card filter-card" data-filter="model">
+    <div class="card-date"><span class="count-badge" id="countModel">0</span></div>
+    <h4>Models</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Releases &amp; updates</span></div>
+  </div>
+  <div class="card filter-card" data-filter="policy">
+    <div class="card-date"><span class="count-badge" id="countPolicy">0</span></div>
+    <h4>Policy &amp; Safety</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Regulation &amp; governance</span></div>
+  </div>
+  <div class="card filter-card" data-filter="hardware">
+    <div class="card-date"><span class="count-badge" id="countHardware">0</span></div>
+    <h4>Hardware</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Chips &amp; infrastructure</span></div>
+  </div>
+  <div class="card filter-card" data-filter="business">
+    <div class="card-date"><span class="count-badge" id="countBusiness">0</span></div>
+    <h4>Business</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Funding &amp; deals</span></div>
+  </div>
+  <div class="card filter-card" data-filter="open">
+    <div class="card-date"><span class="count-badge" id="countOpen">0</span></div>
+    <h4>Open Source</h4>
+    <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Open-weight models</span></div>
+  </div>
 </div>
 
 <!-- ── Model Landscape ── -->
@@ -82,23 +114,21 @@
 </div>
 
 <div class="cards-grid">
-
 <div class="card" data-category="model">
   <div class="card-date">Apr 23 / Jun 26</div>
   <h4>GPT-5.5 → GPT-5.6 (Sol, Terra, Luna)</h4>
   <p>GPT-5.5: first fully retrained base since 4.5, omnimodal, 84.9% GDPval, 78.7% OSWorld. GPT-5.6 Sol: 3.7× better coding vs GPT-4o, 1.5M-token context. Government-curated limited preview with national security oversight.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>OpenAI</span></div>
   <span class="relevance high">High</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="gpt56">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="gpt56">Read more <span class="arrow">→</span></a>
 </div>
-
 <div class="card" data-category="model">
   <div class="card-date">May 28</div>
   <h4>Claude Opus 4.8</h4>
   <p>"Modest but tangible improvement." Leads Artificial Analysis Intelligence Index at 61.4. 69.2% SWE-bench Pro, 88.6% Verified. 2.5× speed mode at 1/3 cost. Trained for greater honesty.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Anthropic</span></div>
   <span class="relevance high">High</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="opus48">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="opus48">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="policy">
@@ -134,7 +164,7 @@
   <p>55 on AI Analysis Index (+9 pts). #3 of 124 on agentic tool use. 280+ output tokens/sec. Jun 24: built-in computer use — native browsing, app automation, cross-platform reasoning. 3.5 Pro expected imminent.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google DeepMind</span></div>
   <span class="relevance medium">Medium</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="gemini35">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="gemini35">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="model">
@@ -143,7 +173,7 @@
   <p>Command A+: 218B MoE (25B active), vision+language, 48 languages, built for agents. North Mini Code: 30B total, 3B active coding sub-model — first agentic coding LLM from Cohere.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Cohere</span></div>
   <span class="relevance medium">Medium</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="commanda">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="commanda">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="open">
@@ -152,16 +182,7 @@
   <p>1T/32B-active MoE coding model. 30% fewer reasoning tokens vs K2.6. 21.8% improvement on Kimi Code Bench v2. 262K context window.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Moonshot AI</span></div>
   <span class="relevance medium">Medium</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="kimi">Read more <span class="arrow">→</span></a></div>
-</div>
-
-<div class="card" data-category="open">
-  <div class="card-date">Jun 25</div>
-  <h4>LFM2.5-230M (Liquid AI)</h4>
-  <p>230M-parameter "liquid state" model. Runs on-device (Raspberry Pi, phones). Matches much larger Transformers. Non-transformer architecture — alternative path beyond attention.</p>
-  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Liquid AI</span></div>
-  <span class="relevance medium">Medium</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="lfm">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="kimi">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="open">
@@ -170,7 +191,16 @@
   <p>State-of-the-art document OCR. 170 languages. Outputs structured text with bounding boxes, layout tags, confidence scores. 72% win-rate vs leading commercial OCR. Self-hostable and fast.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Mistral AI</span></div>
   <span class="relevance medium">Medium</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="ocr4">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="ocr4">Read more <span class="arrow">→</span></a>
+</div>
+
+<div class="card" data-category="open">
+  <div class="card-date">Jun 25</div>
+  <h4>LFM2.5-230M (Liquid AI)</h4>
+  <p>230M-parameter "liquid state" model. Runs on-device (Raspberry Pi, phones). Matches much larger Transformers. Non-transformer architecture — alternative path beyond attention.</p>
+  <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Liquid AI</span></div>
+  <span class="relevance medium">Medium</span>
+  <a class="more-link" href="javascript:void(0)" data-modal="lfm">Read more <span class="arrow">→</span></a>
 </div>
 
 <div class="card" data-category="open">
@@ -179,10 +209,9 @@
   <p>Gemma 4 12B: open-weight multimodal, runs locally on 16GB RAM laptops, vision + native voice. Leanstral 1.5: improved formal-proof model for Lean 4 theorem prover.</p>
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>Google / Mistral</span></div>
   <span class="relevance low">Low</span>
-  <a class="more-link" href="javascript:void(0)" data-modal="gemma4">Read more <span class="arrow">→</span></a></div>
+  <a class="more-link" href="javascript:void(0)" data-modal="gemma4">Read more <span class="arrow">→</span></a>
 </div>
-
-</div><!-- /cards-grid -->
+</div>
 
 <!-- ── Timeline ── -->
 <div class="section-title" data-section="timeline">
@@ -192,100 +221,117 @@
 
 <div class="timeline">
 
-<div class="timeline-item">
+<div class="timeline-item-set" data-category="hardware">
+
+<div class="timeline-item" data-category="hardware">
   <div class="tl-date">June 1</div>
   <div class="tl-title">Nvidia RTX Spark AI PC chip at Computex</div>
   <div class="tl-desc">Blackwell GPU + Grace CPU platform for laptops/desktops. 1 petaflop AI, 128GB RAM.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="policy">
   <div class="tl-date">June 2</div>
   <div class="tl-title">US Executive Order 14409 — AI Innovation &amp; Security</div>
   <div class="tl-desc">Mandates stronger cyber defenses, voluntary "frontier model" framework. Developers share advanced models pre-release. Cites "America First cybersecurity" and protecting IP from adversaries.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="business">
   <div class="tl-date">June 2</div>
   <div class="tl-title">Microsoft Build — Work IQ APIs GA</div>
   <div class="tl-desc">Contextual enterprise data layer for agents. Indexes emails, docs, calendars, communication patterns across M365.</div>
 </div>
+</div>
 
-<div class="timeline-item">
+<div class="timeline-item-set" data-category="model">
+
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 8</div>
   <div class="tl-title">Apple WWDC — Siri AI / Apple Intelligence</div>
   <div class="tl-desc">Context-aware assistant across iOS/macOS. On-device processing, accesses internet + messages/photos context, systemwide app actions. Developer previews for iOS 27.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 9</div>
   <div class="tl-title">GPT-5.6 previewed to select partners + Mythos 5 / Fable 5 launched</div>
   <div class="tl-desc">OpenAI previews Sol (strongest yet, better at defense than attack). Anthropic launches Mythos 5 (cyber/bio) and Fable 5 (safe general). Gemini 3.5 Live Translate goes live in 70+ languages.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="business">
   <div class="tl-date">June 11</div>
   <div class="tl-title">xAI Plugin Marketplace for Grok Build</div>
   <div class="tl-desc">Plugins for MongoDB, Vercel, Sentry, and more for the coding assistant.</div>
 </div>
+</div>
 
-<div class="timeline-item">
+
+
+<div class="timeline-item-set" data-category="policy">
+
+<div class="timeline-item" data-category="policy">
   <div class="tl-date">June 12 <span style="color:var(--red);font-weight:700;">⚡</span></div>
   <div class="tl-title">Fable 5 &amp; Mythos 5 SHUTDOWN by US Commerce Dept</div>
   <div class="tl-desc">5:21pm ET. Export-control directive under Export Control Reform Act. First time a deployed commercial AI is pulled by state order. Anthropic disables both models for all users globally.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 12</div>
   <div class="tl-title">Kimi K2.7-Code released + OpenAI acquires Ona</div>
   <div class="tl-desc">Moonshot's 1T coding model. OpenAI buys cloud execution platform Ona to bolster Codex agents.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 15</div>
   <div class="tl-title">Meta AI Mode in Facebook Search</div>
   <div class="tl-desc">"AI Mode" tab powered by Muse Spark. Answers queries from public posts, Groups, Reels. Plus AI collage, video montage, photo-edit tools with "Made with AI" labeling.</div>
 </div>
+</div>
 
-<div class="timeline-item">
+<div class="timeline-item-set" data-category="business">
+<div class="timeline-item" data-category="business">
   <div class="tl-date">June 16</div>
   <div class="tl-title">SpaceX acquires Cursor (Anysphere) for $60B + GLM-5.2 released</div>
   <div class="tl-desc">Deal in stock. Zhipu AI releases GLM-5.2 under MIT license — beats GPT-5.5 on SWE-bench at 1/7 the cost. Also: Grok Imagine Video 1.5, Grok for PowerPoint.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 17</div>
   <div class="tl-title">Grok 4.3 GA on AWS Bedrock</div>
   <div class="tl-desc">1M-token context LLM. Lowest hallucination rate among frontier models. AWS Summit NYC: Bedrock AgentCore enhancements, Continuum security, Kiro iOS DevOps.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 23</div>
   <div class="tl-title">Mistral OCR 4 released</div>
   <div class="tl-desc">170-language document OCR. Beats commercial systems 72% of the time.</div>
 </div>
+</div>
 
-<div class="timeline-item">
+<div class="timeline-item-set" data-category="model">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 24</div>
   <div class="tl-title">Gemini 3.5 Flash gets Computer Use + Jalapeño chip unveiled</div>
   <div class="tl-desc">Built-in browsing/agent capability. OpenAI/Broadcom "Jalapeño": custom LLM inference chip, far better perf-per-watt than top GPUs.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="hardware">
   <div class="tl-date">June 25</div>
   <div class="tl-title">Liquid AI LFM2.5-230M</div>
   <div class="tl-desc">230M-parameter liquid state model. On-device (Pi/phones). Matches larger Transformers.</div>
 </div>
 
-<div class="timeline-item">
+<div class="timeline-item" data-category="model">
   <div class="tl-date">June 26</div>
   <div class="tl-title">MIT Masked IRL + GPT-5.6 Sol benchmarks</div>
   <div class="tl-desc">Two-LLM robot teaching: tasks like "place coffee without disturbing Zoom" with ~5× less demo data. GPT-5.6 Sol: 3.7× coding improvement on Terminal-Bench 2.1 vs GPT-4 Turbo.</div>
 </div>
+</div>
 
-<div class="timeline-item">
+<div class="timeline-item-set" data-category="open">
+<div class="timeline-item" data-category="open">
   <div class="tl-date">June 30</div>
   <div class="tl-title">Mistral Leanstral 1.5</div>
   <div class="tl-desc">Improved formal-proofs model for Lean 4.</div>
+</div>
 </div>
 
 </div><!-- /timeline -->
@@ -321,7 +367,7 @@
       <button class="btn-read-original" data-modal="fable5">Read Original</button>
       <button class="btn-read-original" data-modal="fable5_alt" style="margin-left:6px;">Full Report</button>
     </div>
-    <div class="featured-body" id="featuredBody"></div>
+    <div class="featured-body" id="featuredBody" style="display:none;"></div>
   </div>
 </div>
 
@@ -347,7 +393,6 @@
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>OpenAI + Broadcom</span></div>
   <span class="relevance low">Low</span>
   <a class="more-link" href="javascript:void(0)" data-modal="jalapeno">Read more <span class="arrow">→</span></a></div>
-</div>
 <div class="card" data-category="hardware">
   <div class="card-date">Jun 25</div>
   <h4>Liquid AI LFM2.5-230M</h4>
@@ -437,7 +482,6 @@
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>$60B Deal</span></div>
   <span class="relevance high">High</span>
   <a class="more-link" href="javascript:void(0)" data-modal="cursor">Read more <span class="arrow">→</span></a></div>
-</div>
 <div class="card" data-category="business">
   <div class="card-date">Jun 12</div>
   <h4>OpenAI Acquires Ona</h4>
@@ -526,7 +570,6 @@
   <div class="card-meta"><span class="meta-text"><span class="meta-dot"></span>xAI</span></div>
   <span class="relevance low">Low</span>
   <a class="more-link" href="javascript:void(0)" data-modal="grokvideo">Read more <span class="arrow">→</span></a></div>
-</div>
 <div class="card" data-category="model">
   <div class="card-date">Jun</div>
   <h4>Google Finance Out of Beta</h4>
@@ -553,10 +596,8 @@
 </div>
 </div><!-- /cards-grid -->
 
-<!-- Pagination (inside /#cardsGrid so it's included in filter scope) -->
+<!-- Pagination -->
 <div class="pagination" id="pagination"></div>
-
-</div><!-- /#cardsGrid -->
 
 <!-- ── Analysis: What June 2026 Means ── -->
 <div class="section-title" data-section="analysis">
@@ -642,7 +683,7 @@
     <li><a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/">Google Blog — "The latest AI news we announced in June 2026"</a> <span class="src-meta">(Jul 1, 2026)</span></li>
     <li><a href="https://blog.mean.ceo/latest-ai-developments-news-june-2026/">Mean CEO — "Latest AI developments News | June 2026 (STARTUP EDITION)"</a> <span class="src-meta">(Jun 4, 2026)</span></li>
     <li><a href="https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/">White House — Executive Order 14409</a> <span class="src-meta">(Jun 2, 2026)</span></li>
-    <li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report">Stanford HAI — 2026 AI Index Report</a> <span class="src-meta"></span></li>
+    <li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report">Stanford HAI — 2026 AI Index Report</a> <span class="src-meta">(2026)</span></li>
     <li><a href="https://www.crescendo.ai/news/latest-ai-news-and-updates">Crescendo AI — Latest AI News</a> <span class="src-meta">(Jun 14, 2026)</span></li>
     <li><a href="https://news.un.org/en/story/2026/07/1167873">UN News — "From AI to killer robots: UN chief issues urgent governance call"</a> <span class="src-meta">(Jul 6, 2026)</span></li>
   </ul>
@@ -666,7 +707,7 @@
   </div>
 </div>
 
-<script src="script.js"></script>
-
 </body>
 </html>
+<script src="script.js"></script>
+

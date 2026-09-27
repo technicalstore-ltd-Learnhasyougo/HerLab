@@ -76,16 +76,33 @@ body::before {
   z-index: 0;
 }
 
-/* Subtle dot-grid overlay */
-body::after {
-  content: "";
+/* Dot-grid overlay — dots placed via flex, flowing around text (sides only) */
+.dot-overlay {
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(rgba(96, 165, 250, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.6;
+  gap: 0;
+}
+
+.dot-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  background: rgba(96, 165, 250, 0.15);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 /* Grain texture overlay (dark-mode only) */
@@ -113,12 +130,14 @@ body::after {
   padding: 0 20px;
   position: relative;
   z-index: 2;
+  background: var(--bg);
 }
 
 .container-fluid {
   width: 100%;
   position: relative;
   z-index: 2;
+  background: var(--bg);
 }
 
 .d-flex { display: flex; align-items: center; }
@@ -446,10 +465,9 @@ body::after {
 
 /* ── Filter buttons ── */
 .filters {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
   margin-bottom: 18px;
   position: relative;
   z-index: 2;
@@ -458,28 +476,46 @@ body::after {
 .filter-btn {
   background: var(--surface);
   border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 14px 12px;
   color: var(--muted);
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.22s ease;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   position: relative;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  min-height: 68px;
+}
+
+.filter-btn .filter-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  transition: color 0.2s;
+  line-height: 1.3;
+}
+
+.filter-btn:hover .filter-label {
+  color: var(--text);
+}
+
+.filter-btn.active .filter-label {
+  color: var(--accent);
 }
 
 .filter-btn .count-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  height: 18px;
-  padding: 0 5px;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
   background: rgba(96,165,250,0.1);
   border-radius: 999px;
   font-size: 0.62rem;
@@ -494,13 +530,16 @@ body::after {
   border-color: var(--accent);
   color: var(--text);
   background: var(--surface2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(96,165,250,0.06), 0 0 0 1px rgba(96,165,250,0.08);
 }
 
 .filter-btn.active {
   background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(167,139,250,0.18));
   border-color: var(--accent);
   color: var(--accent);
-  box-shadow: 0 0 12px rgba(96,165,250,0.1);
+  box-shadow: 0 0 12px rgba(96,165,250,0.1), 0 0 0 1px rgba(96,165,250,0.15);
+  transform: translateY(-2px);
 }
 
 .filter-btn.active .count-badge {
@@ -511,11 +550,23 @@ body::after {
 /* ── Cards grid ── */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-bottom: 20px;
   position: relative;
   z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Standard card ── */
@@ -523,11 +574,16 @@ body::after {
   background: var(--surface);
   border: 1px solid var(--border-light);
   border-radius: 12px;
-  padding: 16px 16px 14px;
+  padding: 12px 16px;
   transition: all 0.22s ease;
   cursor: default;
   position: relative;
   z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
@@ -537,15 +593,16 @@ body::after {
 }
 
 .card-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 0;
+  margin-right: 10px;
   font-size: 0.68rem;
   color: var(--muted);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
 .card-date::before {
@@ -559,11 +616,13 @@ body::after {
 }
 
 .card h4 {
-  font-size: 0.92rem;
+  display: inline;
+  font-size: 0.88rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   color: var(--text);
   line-height: 1.3;
+  vertical-align: middle;
 }
 
 .card p {
@@ -635,7 +694,62 @@ body::after {
 .tag-safety  { background: rgba(248,113,113,0.1); color: var(--red);     border: 1px solid rgba(248,113,113,0.2);  }
 .tag-misc    { background: rgba(148,163,184,0.1); color: var(--text-dim); border: 1px solid rgba(148,163,184,0.2); }
 
-/* "More to read" link inside card */
+/* ── Filter cards (card-styled buttons inside cards-grid) ── */
+.filter-card {
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.filter-card:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(96,165,250,0.06), 0 0 0 1px rgba(96,165,250,0.08) !important;
+}
+
+.filter-card.active {
+  border-color: var(--accent) !important;
+  background: linear-gradient(135deg, rgba(96,165,250,0.12), rgba(167,139,250,0.12)) !important;
+  box-shadow: 0 0 16px rgba(96,165,250,0.12), 0 0 0 1px rgba(96,165,250,0.2) !important;
+  transform: translateY(-2px);
+}
+
+.filter-card .count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  background: rgba(96,165,250,0.1);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0;
+  text-transform: none;
+  transition: all 0.2s;
+}
+
+.filter-card.active .count-badge {
+  background: rgba(96,165,250,0.2);
+  color: var(--accent);
+}
+
+.filter-card .filter-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  transition: color 0.2s;
+  line-height: 1.3;
+}
+
+.filter-card:hover .filter-label {
+  color: var(--text);
+}
+
+.filter-card.active .filter-label {
+  color: var(--accent);
+}
 .more-link {
   display: inline-flex;
   align-items: center;
@@ -682,12 +796,13 @@ body::after {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   padding: 12px 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   transition: border-color 0.2s, box-shadow 0.2s;
+  max-width: 32%;
 }
 
 .timeline-item:hover {
@@ -734,6 +849,98 @@ body::after {
   font-size: 0.78rem;
   color: var(--text-dim);
   line-height: 1.45;
+}
+
+/* ── Timeline item sets (groups of 3) ── */
+.timeline-item-set {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  position: relative;
+}
+
+.timeline-item-set:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.timeline-item-set .timeline-item {
+  margin-bottom: 0;
+}
+
+.timeline-item-set .timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Timeline item-set category tag ── */
+.timeline-item-set::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 38px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.4;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.timeline-item-set::after {
+  content: attr(data-category);
+  position: absolute;
+  top: -2px;
+  right: 6px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: rgba(90,111,148,0.1);
+  color: var(--muted);
+  border: 1px solid rgba(90,111,148,0.2);
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.timeline-item-set[data-category="model"]::before { background: var(--accent); opacity: 0.8; }
+.timeline-item-set[data-category="model"]::after  { color: var(--accent); background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.2); }
+.timeline-item-set[data-category="policy"]::before { background: var(--yellow); opacity: 0.8; }
+.timeline-item-set[data-category="policy"]::after  { color: var(--yellow); background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.2); }
+.timeline-item-set[data-category="hardware"]::before { background: var(--green); opacity: 0.8; }
+.timeline-item-set[data-category="hardware"]::after  { color: var(--green); background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); }
+.timeline-item-set[data-category="business"]::before { background: var(--orange); opacity: 0.8; }
+.timeline-item-set[data-category="business"]::after  { color: var(--orange); background: rgba(251,146,60,0.1); border-color: rgba(251,146,60,0.2); }
+.timeline-item-set[data-category="open"]::before { background: var(--purple); opacity: 0.8; }
+.timeline-item-set[data-category="open"]::after  { color: var(--purple); background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.2); }
+
+.timeline-item-set .tl-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-item-set .tl-date::before {
+  content: "";
+  display: flex;
+  justify-content: center;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.5;
+}
+
+/* ── Timeline item-set hidden state (filter) ── */
+.timeline-item-set.hidden {
+  display: none;
 }
 
 /* ── Analysis boxes ── */
@@ -956,6 +1163,39 @@ body::after {
 }
 
 .more-to-read .mtr-title .mtr-icon { font-size: 1rem; }
+
+/* ── More to Read category headers ── */
+.mtr-cat-header {
+  grid-column: 1 / -1;
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.mtr-cat-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mtr-cat-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 6px;
+  background: rgba(96,165,250,0.12);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--accent);
+}
 
 .mtr-grid {
   display: grid;
@@ -1355,6 +1595,33 @@ body::after {
 
 .hidden-section {
   display: none !important;
+}
+
+/* ── Featured body (modal extended content) ── */
+.featured-body {
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  display: none;
+}
+
+.featured-body p {
+  margin-bottom: 8px;
+}
+
+.featured-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Utility classes (bootstrap-compatible) ── */
+.bg-body-tertiary {
+  background-color: var(--surface2);
+}
+
+.me-2 {
+  margin-right: 0.5rem;
 }
 
 /* ── Print ── */

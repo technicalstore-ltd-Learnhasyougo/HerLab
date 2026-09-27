@@ -1,1 +1,26 @@
+# Ignore everything by default
+*
+
+# Except the 3 core project files
+!AI_News_June_2026.html
+!script.js
+!styles.css
+
+# Keep .gitignore itself tracked (Git requires this)
+!.gitignore
+
+# Ignore everything else explicitly
+Dockerfile
+.dockerignore
+README.md
+*.md
+*.py
+*.log
+logs/
+New-AI-folder/
+*.mp4
+*.txt
 *.backup
+*
+
+

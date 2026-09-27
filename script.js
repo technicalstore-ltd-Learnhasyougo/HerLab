@@ -1,12 +1,13 @@
 /**
  * AI News June 2026 — Filter, Pagination, Modal, More-to-Read, Stat Counters
- * v4 — expanded: 11 modal entries, 20 more-to-read items, count badges, section filtering, featured-body
+ * v4 — expanded: 14 modal entries, 20 more-to-read items, count badges, section filtering, featured-body
  */
 (function () {
   'use strict';
 
-  var filterBtns = document.querySelectorAll('.filter-btn');
-  var cards      = document.querySelectorAll('.card');
+  var filterCards = document.querySelectorAll('.filter-card');
+  var cards      = document.querySelectorAll('.card:not(.filter-card)');
+  var timelineSets = document.querySelectorAll('.timeline-item-set');
   var paginationEl = document.getElementById('pagination');
   var moreLinks  = document.querySelectorAll('.more-link');
   var modalOverlay = document.getElementById('modalOverlay');
@@ -49,7 +50,7 @@
 
   function updateCountBadges() {
     var activeFilter = 'all';
-    filterBtns.forEach(function (b) {
+    filterCards.forEach(function (b) {
       if (b.classList.contains('active')) activeFilter = b.getAttribute('data-filter');
     });
     Object.keys(catCountIds).forEach(function (cat) {
@@ -70,11 +71,11 @@
   // ── Hide/show section titles based on whether their cards are visible ──
   function updateSectionVisibility() {
     var activeFilter = 'all';
-    filterBtns.forEach(function (b) {
+    filterCards.forEach(function (b) {
       if (b.classList.contains('active')) activeFilter = b.getAttribute('data-filter');
     });
-    // Always show: models, timeline, featured, stanford, research, analysis
-    var alwaysShow = ['models', 'timeline', 'featured', 'stanford', 'research', 'analysis'];
+    // Always show: models, timeline, featured, stanford, research, analysis, filters
+    var alwaysShow = ['models', 'timeline', 'featured', 'stanford', 'research', 'analysis', 'filters'];
     Object.keys(sectionTitles).forEach(function (sec) {
       var el = sectionTitles[sec];
       if (!el) return;
@@ -172,6 +173,9 @@
     cards.forEach(function (card) {
       if (!card.classList.contains('hidden')) count++;
     });
+    timelineSets.forEach(function (ts) {
+      if (!ts.classList.contains('hidden')) count++;
+    });
     return count;
   }
 
@@ -185,15 +189,23 @@
         card.classList.add('hidden');
       }
     });
+    timelineSets.forEach(function (ts) {
+      var cat = ts.getAttribute('data-category');
+      if (filter === 'all' || cat === filter) {
+        ts.classList.remove('hidden');
+      } else {
+        ts.classList.add('hidden');
+      }
+    });
     currentPage = 1;
     updatePaginationUI();
     updateCountBadges();
     updateSectionVisibility();
   }
 
-  filterBtns.forEach(function (btn) {
+  filterCards.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      filterCards.forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var filter = btn.getAttribute('data-filter');
       applyFilter(filter);
@@ -506,156 +518,200 @@
     });
   });
 
-  // ── JS-driven More to Read (20 items) ──
+  // ── JS-driven More to Read (22 items, grouped by category) ──
   var moreToReadData = [
+    // ── all ──
     {
+      cat: 'all',
       source: 'AI Critique',
       date: 'Jul 2, 2026',
       title: 'AI Developments in June 2026: Major Releases, Products, Research, and Policy',
       desc: 'Comprehensive monthly roundup covering all major model releases, product launches, research papers, and policy developments from June 2026.',
       url: 'https://www.aicritique.org/us/2026/07/02/ai-developments-in-june-2026-major-releases-products-research-and-policy/'
     },
+    // ── all ──
     {
+      cat: 'all',
       source: 'KERSAI',
       date: 'Jun 26, 2026',
       title: 'AI Breakthroughs in June 2026: Mid-Year Update',
       desc: 'Mid-year perspective on the most important AI breakthroughs, with emphasis on what the first half of 2026 tells us about the trajectory of the field.',
       url: 'https://kersai.com/ai-breakthroughs-june-2026-mid-year-update/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Google Blog',
       date: 'Jul 1, 2026',
       title: 'The Latest AI News We Announced in June 2026',
       desc: 'Official Google blog post summarizing all AI announcements from June 2026, including Gemini updates, Android AI features, and Google Cloud developments.',
       url: 'https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/'
     },
+    // ── business ──
     {
+      cat: 'business',
       source: 'Mean CEO',
       date: 'Jun 4, 2026',
       title: 'Latest AI Developments News | June 2026 (Startup Edition)',
       desc: 'Startup-focused roundup of the latest AI developments, funding rounds, product launches, and company news from the June 2026 period.',
       url: 'https://blog.mean.ceo/latest-ai-developments-news-june-2026/'
     },
+    // ── policy ──
     {
+      cat: 'policy',
       source: 'White House',
       date: 'Jun 2, 2026',
       title: 'Executive Order 14409 — Promoting Advanced Artificial Intelligence Innovation and Security',
       desc: 'The full text of the executive order mandating stronger cyber defenses for national security systems and establishing a voluntary frontier model framework.',
       url: 'https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/'
     },
+    // ── policy ──
     {
+      cat: 'policy',
       source: 'Stanford HAI',
       date: '2026',
       title: '2026 AI Index Report',
       desc: "Stanford's annual report on AI progress, adoption, investment, and policy. The definitive cross-industry benchmark for where AI stands relative to prior years.",
       url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report'
     },
+    // ── all ──
     {
+      cat: 'all',
       source: 'Crescendo AI',
       date: 'Jun 14, 2026',
       title: 'Latest AI News and Updates',
       desc: 'Ongoing AI news coverage with daily updates on model releases, product launches, research, and industry developments.',
       url: 'https://www.crescendo.ai/news/latest-ai-news-and-updates'
     },
+    // ── policy ──
     {
+      cat: 'policy',
       source: 'UN News',
       date: 'Jul 6, 2026',
       title: 'From AI to Killer Robots: UN Chief Issues Urgent Governance Call',
       desc: "UN Secretary-General António Guterres's urgent appeal for AI governance action, referencing the UN Independent International Scientific Panel on Artificial Intelligence.",
       url: 'https://news.un.org/en/story/2026/07/1167873'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Anthropic News',
       date: 'Jun 12, 2026',
       title: 'Claude Opus 4.8 and the Fable 5 / Mythos 5 Shutdown: Two Sides of the Same Month',
       desc: "Anthropic's official blog covering both the Opus 4.8 release and the regulatory shutdown of Fable 5 and Mythos 5 — two events that defined June 2026 for the AI industry.",
       url: 'https://www.anthropic.com/news/claude-opus-4-8'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'OpenAI Blog',
       date: 'Jun 26, 2026',
       title: 'GPT-5.6: Three Variants, One Leap',
       desc: 'OpenAI\'s technical blog on GPT-5.6 Sol, Terra, and Luna — the three-variant release strategy and what it means for different use cases from coding to science to consumer apps.',
       url: 'https://openai.com/index/gpt-5-6/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Artificial Analysis',
       date: 'Jun 2026',
       title: 'June 2026 Model Leaderboard: The Convergence Continues',
       desc: "Artificial Analysis's monthly model comparison: Claude Opus 4.8 takes the intelligence lead, GLM-5.2 leads open weights, and the gap between top models narrows to historic lows.",
       url: 'https://artificialanalysis.ai/models/compare'
     },
+    // ── business ──
     {
+      cat: 'business',
       source: 'TechCrunch',
       date: 'Jun 16, 2026',
       title: 'SpaceX Acquires Cursor for $60B in Stock — The Largest AI Deal Ever',
       desc: 'Breaking coverage of the SpaceX-Anysphere deal: deal terms, strategic rationale, and what it means for the AI coding market and the broader consolidation trend.',
       url: 'https://techcrunch.com/2026/06/16/spacex-cursor-acquisition/'
     },
+    // ── policy ──
     {
+      cat: 'policy',
       source: 'The Information',
       date: 'Jun 2026',
       title: 'The Fable 5 Shutdown: Inside the 72 Hours That Changed AI Regulation',
       desc: "Deep-dive investigation into the timeline, the security finding, the Amazon escalation, and the Commerce Department's decision — the most detailed account of the first frontier model pullback.",
       url: 'https://www.theinformation.com/articles/fable-5-shutdown-timeline'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Zhipu AI Blog',
       date: 'Jun 16, 2026',
       title: 'GLM-5.2: MIT-Licensed Frontier Model Beating GPT-5.5 on SWE-bench',
       desc: "Zhipu AI's official release announcement for GLM-5.2: technical specifications, benchmark results, licensing details, and the vision for open-weight frontier models.",
       url: 'https://z.ai/blog/glm-5-2-release'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Google AI Blog',
       date: 'Jun 24, 2026',
       title: 'Gemini 3.5 Flash Gets Built-In Computer Use',
       desc: 'Google\'s technical deep-dive on the computer use capability: how it works, safety measures, supported platforms, and the agentic tool-use benchmark results.',
       url: 'https://blog.google/technology/ai/gemini-3-5-computer-use/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Moonshot AI',
       date: 'Jun 12, 2026',
       title: 'Kimi K2.7-Code: 1T Parameters, 262K Context, 21.8% Better',
       desc: "Moonshot AI's technical release notes for Kimi K2.7-Code: architecture details, benchmark comparisons with K2.6, and the efficiency gains in reasoning token usage.",
       url: 'https://moonshot.ai/blog/kimi-k2-7-code/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Mistral AI Blog',
       date: 'Jun 23, 2026',
       title: 'OCR 4: 170 Languages, Structured Output, 72% Win Rate',
       desc: "Mistral's announcement of OCR 4 with technical details on the structured output format, language coverage, and the benchmarking methodology behind the 72% win-rate claim.",
       url: 'https://mistral.ai/news/ocr-4/'
     },
+    // ── hardware ──
     {
+      cat: 'hardware',
       source: 'Liquid AI Blog',
       date: 'Jun 25, 2026',
       title: 'LFM2.5-230M: Non-Transformer AI That Runs on a Raspberry Pi',
       desc: "Liquid AI\'s explanation of the liquid state architecture, why 230M parameters can match larger transformers on specific tasks, and the roadmap for on-device AI beyond transformers.",
       url: 'https://liquid.ai/blog/lfm2-5-230m/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Cohere Blog',
       date: 'Jun 9, 2026',
       title: 'Command A+ and North Mini Code: Enter the Agentic Coding Arena',
       desc: "Cohere's announcement of its first coding model (North Mini Code) alongside the expanded Command A+ — the company's strategic move from document understanding into agentic workflows.",
       url: 'https://cohere.com/blog/command-a-plus-north-mini-code/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Google DeepMind Blog',
       date: 'Jun 24, 2026',
       title: 'Gemini 3.5 Flash Computer Use: Native App Automation and Cross-Platform Reasoning',
       desc: 'Google DeepMind details the built-in computer use capability added to Gemini 3.5 Flash — how it handles browsing, application control, and cross-platform workflows, with benchmark results on agentic tool-use leaderboards.',
       url: 'https://blog.google/technology/ai/gemini-3-5-computer-use-deep-dive/'
     },
+    // ── model ──
     {
+      cat: 'model',
       source: 'Zhipu AI Blog',
       date: 'Jun 16, 2026',
       title: 'GLM-5.2 Technical Report: MIT-Licensed 744B MoE Rivaling GPT-5.5',
       desc: "Zhipu AI's official technical report on GLM-5.2: architecture details, 62.1% SWE-bench Pro results, cost analysis at $1.40/$4.40 per M tokens, and the MIT license implications for open-weight frontier models.",
       url: 'https://z.ai/blog/glm-5-2-technical-report/'
     },
+    // ── hardware ──
     {
+      cat: 'hardware',
       source: 'IEEE Spectrum',
       date: 'Jun 2026',
       title: 'AI Hardware Diversification: Beyond the GPU — RTMs, Analog, and Custom Silicon',
@@ -664,25 +720,63 @@
     },
   ];
 
+  // ── Category display names for More to Read headers ──
+  var mtrCategoryNames = {
+    all:     'All Topics',
+    model:   'The Model Landscape',
+    policy:  'Policy & Regulation',
+    hardware:'Hardware & Infrastructure',
+    business:'Business & Funding',
+    open:    'Products & Consumer AI'
+  };
+
   function renderMoreToRead() {
     var container = document.querySelector('.mtr-grid');
     if (!container) return;
     container.innerHTML = '';
+
+    // Group items by category
+    var grouped = {};
     moreToReadData.forEach(function (item) {
-      var a = document.createElement('a');
-      a.className = 'mtr-item';
-      a.href = item.url;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      a.innerHTML =
-        '<div class="mtr-head">' +
-          '<span class="mtr-source">' + item.source + '</span>' +
-          '<span class="mtr-date">' + item.date + '</span>' +
-        '</div>' +
-        '<div class="mtr-title-text">' + item.title + '</div>' +
-        '<div class="mtr-desc">' + item.desc + '</div>' +
-        '<span class="mtr-link-icon">→</span>';
-      container.appendChild(a);
+      var cat = item.cat || 'all';
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(item);
+    });
+
+    // Category order matching the filter buttons
+    var catOrder = ['all', 'model', 'hardware', 'policy', 'business', 'open'];
+
+    catOrder.forEach(function (cat) {
+      var items = grouped[cat];
+      if (!items || items.length === 0) return;
+
+      // Category header
+      var header = document.createElement('div');
+      header.className = 'mtr-cat-header';
+      header.innerHTML =
+        '<div class="mtr-cat-title">' +
+          (mtrCategoryNames[cat] || cat) +
+          ' <span class="mtr-cat-count">' + items.length + '</span>' +
+        '</div>';
+      container.appendChild(header);
+
+      // Items in this category
+      items.forEach(function (item) {
+        var a = document.createElement('a');
+        a.className = 'mtr-item';
+        a.href = item.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.innerHTML =
+          '<div class="mtr-head">' +
+            '<span class="mtr-source">' + item.source + '</span>' +
+            '<span class="mtr-date">' + item.date + '</span>' +
+          '</div>' +
+          '<div class="mtr-title-text">' + item.title + '</div>' +
+          '<div class="mtr-desc">' + item.desc + '</div>' +
+          '<span class="mtr-link-icon">→</span>';
+        container.appendChild(a);
+      });
     });
   }
 
@@ -771,6 +865,13 @@
 
   // Init count badges
   updateCountBadges();
+
+  // Init filter cards (set "all" active by default)
+  filterCards.forEach(function (card) {
+    if (card.getAttribute('data-filter') === 'all') {
+      card.classList.add('active');
+    }
+  });
 
   // Init section visibility
   updateSectionVisibility();
