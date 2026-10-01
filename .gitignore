@@ -17,10 +17,11 @@ README.md
 *.py
 *.log
 logs/
-New-AI-folder/
+folder/
 *.mp4
 *.txt
 *.backup
-*
+*.CSV
+
 
 
